@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "PeopleHistory";
+    Layout = "~/Views/Shared/_BuildingOccupancy.cshtml";
+}
+@using MasterApp.Models;
+@{
+    IEnumerable<PeopleHistory> PeopleHistoryList = (IEnumerable<PeopleHistory>)ViewData["PeopleHistory"];
+}
+<div id="peopleGrid">
+    @Html.Partial("_PeopleHistoryGrid")
+</div>
+
+@section BodyScript{
+    <script type="text/javascript">
+
+        @*var ID = "@MasterModel.ID";
+        var AreaName = "@MasterModel.AreaName";
+        var LocationName = "@MasterModel.LocationName";
+        var InDeviceList = "@MasterModel.InDeviceList";
+        var OutDeviceList = "@MasterModel.OutDeviceList";
+        var Effect = "@MasterModel.Effect";
+        var GroupBy = "@MasterModel.GroupBy";
+        var CurrentGroup = "@MasterModel.CurrentGroup";
+
+        $(function () {
+            setInterval(
+                function Refresh() {
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/MasterPointPeople/Refresh",
+                            data: {
+                                ID: ID,
+                                AreaName: AreaName,
+                                LocationName: LocationName,
+                                InDeviceList: InDeviceList,
+                                OutDeviceList: OutDeviceList,
+                                Effect: Effect,
+                                GroupBy: GroupBy,
+                                CurrentGroup: CurrentGroup
+                            },
+                            success: function (data) {
+                                $("#peopleGrid").html(data);
+                            }
+                        }
+                    );
+                }
+            , 3000);
+        });*@
+    </script>
+}

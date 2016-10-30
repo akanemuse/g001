@@ -1,0 +1,32 @@
+﻿
+@using MasterApp.Models;
+@*@{
+    IEnumerable<MasterPointModel> model = (IEnumerable<MasterPointModel>)ViewData["listMasterPoint"];
+}*@
+
+@model IEnumerable<MasterPointModel>
+
+<div >
+    @foreach (var item in Model)
+{
+    <a class="tile double double-vertical live" data-role="live-tile" data-effect="@item.Effect" data-click="transform" onclick="javascript:GoToDetailMasterPoint(@Html.Raw(Json.Encode(item)))">
+        <div class="tile-content bg-cyan">
+            <div class="padding10">
+                <h1 class="fg-white ntm">@item.InsideCount</h1>
+                <h2 class="fg-white no-margin">@item.LocationName</h2>
+            </div>
+        </div>
+        <div class="tile-content bg-amber">
+            <div class="padding10">
+                <h1 class="fg-white ntm">@item.InsideCount</h1>
+                <h2 class="fg-white no-margin">@item.LocationName</h2>
+            </div>
+        </div>
+        <div class="tile-status">
+            <div class="label" style="font-size:20px">@item.AreaName</div>
+        </div>
+    </a>
+}
+
+
+</div>

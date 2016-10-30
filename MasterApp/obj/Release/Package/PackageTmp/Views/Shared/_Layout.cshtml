@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link href="~/Content/css/metro-bootstrap.css" rel="stylesheet">
+        <link href="~/Content/css/metro-bootstrap-responsive.css" rel="stylesheet">
+        <link href="~/Content/css/iconFont.css" rel="stylesheet">
+        <link href="~/Content/css/docs.css" rel="stylesheet">
+        <link href="~/Content/js/prettify/prettify.css" rel="stylesheet">
+
+        <!-- Load JavaScript Libraries -->
+        <script src="~/Content/js/jquery/jquery.min.js"></script>
+        <script src="~/Content/js/jquery/jquery.widget.min.js"></script>
+        <script src="~/Content/js/jquery/jquery.mousewheel.js"></script>
+        <script src="~/Content/js/prettify/prettify.js"></script>
+        <script src="~/Content/js/holder/holder.js"></script>
+
+        <!-- Metro UI CSS JavaScript plugins -->
+        <script src="~/Content/js/metro.min.js"></script>
+
+        <!-- Local JavaScript -->
+        @*<script src="~/Content/js/docs.js"></script>
+        <script src="~/Content/js/github.info.js"></script>*@
+
+        <title>Master Apps</title>
+
+        @if (IsSectionDefined("HeadScript"))
+        {
+            @RenderSection("HeadScript")
+        }
+
+    </head> 
+    <body class="metro" style="background-color: #eeeeee">
+    <header>
+        <nav class="navigation-bar dark">
+            <div class="navigation-bar-content container">
+                @*<a href="/" class="element" style="padding:7px">
+                    <img src="@Url.Content("~/Content/images/Company/toyota_icon.png")" />
+                </a>*@
+                <a href="/" class="element">
+                    <strong>TMMIN</strong> 
+                </a>
+                <span class="element-divider"></span>
+
+                <a class="pull-menu" href="#"></a>
+                <ul class="element-menu">
+                    @*<li>
+                        <a class="dropdown-toggle" href="#">Human Resources</a>
+                        <ul class="dropdown-menu dark" data-role="dropdown">
+                            <li><a href="/Home/About">Attendance System</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Home/About">Attendance Monitoring</a></li>
+                            <li><a href="/Home/About">Device Monitoring</a></li>
+                        </ul>
+                    </li>*@
+                    <li>
+                        <a class="dropdown-toggle" href="#">General Affairs</a>
+                        <ul class="dropdown-menu dark" data-role="dropdown">
+                            @*<li><a href="/BuildingOccupancy">Building Occupancy</a></li>
+                            <li><a href="/MasterPoint/MasterPoint">Real Time People Count</a></li>*@
+                            <li><a href="/Occupancy">Occupancy Monitoring</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="no-tablet-portrait">
+                    <div class="element place-right">
+                        <a class="dropdown-toggle" href="#">
+                            <span class="icon-cog"></span>
+                        </a>
+                    </div>
+                    <span class="element-divider place-right"></span>
+                    @*<button class="element image-button image-left place-right">
+                        Administrator
+                        <img src="Content/images/me.jpg" />
+                    </button>*@
+                    <span class="element-divider place-right"></span>
+                    <div class="element place-right"><span class="times inverse" data-role="times" data-blink="false" style="font-size: 13px"></span></div>
+                    <span class="element-divider place-right"></span>
+                    <div class="element place-right"><span class="icon-calendar">&nbsp;&nbsp;&nbsp;</span> @DateTime.Today.ToShortDateString()</div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    @*<div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>*@
+
+    <div class="container" id="page-wrapper">
+        @RenderBody()
+    </div>
+
+    @*<div class=" bg-dark" style="height: 60px;padding:20px;">
+        <div class="row">
+            <ul class="inline fg-white text-center">
+                <li>&copy; Nuryanto 2015</li>
+                <li><a href="mailto:akhmad.nuryanto@gmail.com"><span class="icon-mail-2 fg-white"></span>&nbsp;&nbsp;akhmad.nuryanto@gmail.com</a></li>
+            </ul>
+        </div>
+    </div>*@
+
+    @if (IsSectionDefined("BodyScript"))
+    {
+        @RenderSection("BodyScript")
+    }
+
+    @if (IsSectionDefined("Style"))
+    {
+        @RenderSection("Style")
+    }
+</body>
+</html>

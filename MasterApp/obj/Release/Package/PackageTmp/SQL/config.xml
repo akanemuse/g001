@@ -1,0 +1,56 @@
+﻿<Configuration>
+  <ListModels>
+    <ID>0</ID>
+    <AreaName>Lantai 4</AreaName>
+    <LocationName>7th Floor East Side (YOS)</LocationName>
+    <InDeviceList>000101,</InDeviceList>
+    <OutDeviceList>000101,</OutDeviceList>
+    <InsideCount>0</InsideCount>
+    <Effect>slideLeftRight</Effect>
+  </ListModels>
+  <!--<ListModels>
+    <ID>2</ID>
+    <AreaName>Lantai 4</AreaName>
+    <LocationName>FINANCE</LocationName>
+    <InDeviceList>000201,</InDeviceList>
+    <OutDeviceList>000201,</OutDeviceList>
+    <InsideCount>0</InsideCount>
+    <Effect>slideUpDown</Effect>
+  </ListModels>-->
+  <ListModels>
+    <ID>1</ID>
+    <AreaName>Lantai 7</AreaName>
+    <LocationName>BOD</LocationName>
+    <InDeviceList>000206,</InDeviceList>
+    <OutDeviceList>000206,</OutDeviceList>
+    <InsideCount>0</InsideCount>
+    <Effect>slideLeftRight</Effect>
+  </ListModels>
+  <ListModels>
+    <ID>2</ID>
+    <AreaName>Lantai 7</AreaName>
+    <LocationName>EAD</LocationName>
+    <InDeviceList>000207,</InDeviceList>
+    <OutDeviceList>000207,</OutDeviceList>
+    <InsideCount>0</InsideCount>
+    <Effect>slideUpDown</Effect>
+  </ListModels>
+  <ListModels>
+    <ID>3</ID>g
+    <AreaName>Lantai 4</AreaName>
+    <LocationName>ISTD</LocationName>
+    <InDeviceList>000308,</InDeviceList>
+    <OutDeviceList>000308,</OutDeviceList>
+    <InsideCount>0</InsideCount>
+    <Effect>slideUpDown</Effect>
+  </ListModels>
+  <ListModels>
+    <ID>4</ID>
+    <AreaName>Lantai 1</AreaName>
+    <LocationName>MUSHOLA</LocationName>
+    <InDeviceList>000402,</InDeviceList>
+    <OutDeviceList>000402,</OutDeviceList>
+    <InsideCount>0</InsideCount>
+    <Effect>slideUpDown</Effect>
+  </ListModels>
+</Configuration>

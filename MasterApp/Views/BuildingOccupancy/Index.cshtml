@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Building Occupancy Monitoring System";
+    Layout = "~/Views/Shared/_BuildingOccupancy.cshtml";
+}
+@using MasterApp.Models;
+@{
+    IEnumerable<BuildingOccupancyModel> MasterModelList = (IEnumerable<BuildingOccupancyModel>)ViewData["ListMasterPoint"];
+}
+
+@*<div style="display:inline-block;">
+        <h1 style="font-weight: bold; display: inline-block; float:left; width: 1000px; text-align:center;">
+            @MasterModel.LocationName
+        </h1>
+        <div class="times" data-role="times" data-style-background="bg-coldBlue" data-style-divider="fg-coldBlue"
+             style="font-size: 24px; display: inline-block; float: right; padding-top:20px"></div>
+        <div class="fg-coldBlue ntm" style="font-size: 24px; text-align: center; display: inline-block; float: right; padding-top:22px">
+            <strong>@DateTime.Today.ToString("dd-MMM-yyyy")</strong>&nbsp;
+        </div>
+    </div>*@
+
+<div id="partialLiveDetail">
+    @Html.Partial("_BuildingOccupancyGrid")
+</div>
+
+@section BodyScript{
+    <script type="text/javascript">
+        $(function () {
+            setInterval(
+                function Refresh() {
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/BuildingOccupancy/Refresh",
+                            data: {
+                            },
+                            success: function (data) {
+                                $("#partialLiveDetail").html(data);
+                            }
+                        }
+                    );
+                }
+            , 3000);
+        });
+
+        //function MasterPointPeople(item) {
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/MasterPointDetail/MasterPointPeople",
+        //        data: {
+        //            ID: item.ID,
+        //            AreaName: item.AreaName,
+        //            LocationName: item.LocationName,
+        //            InDeviceList: item.InDeviceList,
+        //            OutDeviceList: item.OutDeviceList,
+        //            InsideCount: item.InsideCount,
+        //            Effect: item.Effect,
+        //            GroupBy: item.group,
+        //        },
+        //    });
+        //}
+
+        function GetPeopleHistory(item) {
+            $.ajax({
+                type: "POST",
+                url: "/BuildingOccupancy/PeopleHistory",
+                data: {
+                    ID: item.ID,
+                    AreaName: item.AreaName,
+                    LocationName: item.LocationName,
+                    InDeviceList: item.InDeviceList,
+                    OutDeviceList: item.OutDeviceList,
+                    InsideCount: item.InsideCount,
+                    Effect: item.Effect,
+                    GroupBy: item.group,
+                },
+            });
+        }
+
+
+    </script>
+}

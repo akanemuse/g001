@@ -1,0 +1,72 @@
+﻿@using MasterApp.Models;
+@{
+    MasterPointModel MasterModel = (MasterPointModel)ViewData["MasterPoint"];
+}
+
+@*<div style="height: 660px; overflow: auto;">
+    <table class="table striped">
+        <thead>
+            <tr>
+                <th class="text-left"><h2>Name</h2></th>
+                <th class="text-left"><h2>Division</h2></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in @MasterModel.PeopleList.Where(m => m.Divisi == MasterModel.CurrentGroup))
+            {
+                <tr>
+                    <td><h2>@item.Name</h2></td>
+                    <td><h2>@item.Divisi</h2></td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot></tfoot>
+    </table>
+</div>*@
+
+<div style="height: 665px; overflow: auto;">
+    <table class="table striped" style="margin-bottom: 0; width:1366px;">
+        <thead style="display:block; width:100%;">
+            <tr class="success">
+                <th class="text-left" style="width:100px;"><h2>NO</h2></th>
+                <th class="text-left" style="width:472px;"><h2>Name</h2></th>
+                <th class="text-left" style="width:512px;"><h2>Division</h2></th>
+                <th class="text-left" style="width:141px;"><h2>Time In</h2></th>
+                <th class="text-left" style="width:141px;"><h2>Time Out</h2></th>
+            </tr>
+        </thead>
+
+        <tbody style="height:534px; display:block; overflow-y: scroll;">
+            @{int i = 0;}
+            @foreach (var item in @MasterModel.PeopleList.Where(m => m.Divisi == MasterModel.CurrentGroup))
+            {
+                i++;
+                <tr>
+                    <td style="width:100px;"><h2>@i</h2></td>
+                    <td style="width:479px;"><h2>@item.Name.Trim()</h2></td>
+                    <td style="width:520px;"><h2>@item.Divisi.Trim()</h2></td>
+                    <td style="width:137px;"><h2>@item.TimeIn</h2></td>
+                    <td style="width:130px;"><h2>@item.TimeOut</h2></td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot style="display: block; width: 100%;">
+            <tr class="success">
+                <td class="text-left" style="width:100px;">
+                    <h2>
+                        <a href="javascript:window.history.back();"><i class="icon-arrow-left-3 fg-darker"></i></a>
+                    </h2>
+                </td>
+                <td class="text-center" colspan="3" style="width:1055px;">
+                    <h2>
+                        TOTAL
+                    </h2>
+                </td>
+                <td style="width:222px;"><h2>@MasterModel.PeopleList.Where(m => m.Divisi == MasterModel.CurrentGroup).Count()</h2></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="~/Content/css/metro-bootstrap.css" rel="stylesheet">
+    <link href="~/Content/css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="~/Content/css/iconFont.css" rel="stylesheet">
+    <link href="~/Content/css/docs.css" rel="stylesheet">
+    <link href="~/Content/js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="~/Content/js/jquery/jquery.min.js"></script>
+    <script src="~/Content/js/jquery/jquery.widget.min.js"></script>
+    <script src="~/Content/js/jquery/jquery.mousewheel.js"></script>
+    <script src="~/Content/js/prettify/prettify.js"></script>
+    <script src="~/Content/js/holder/holder.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script src="~/Content/js/metro.min.js"></script>
+
+    <!-- Local JavaScript -->
+    @*<script src="~/Content/js/docs.js"></script>
+        <script src="~/Content/js/github.info.js"></script>*@
+
+    <title>Master Apps</title>
+
+    @if (IsSectionDefined("HeadScript"))
+    {
+        @RenderSection("HeadScript")
+    }
+
+</head>
+<body class="metro" style="background-color: #eeeeee">
+
+
+    <div class="headerDetail">
+        <div class="fullscreenHeader">
+            @*<img src="@Url.Content("~/Content/images/Company/car_logo_toyota_header.png")" />*@
+            <div class="textHeader">
+                <strong>TMMIN</strong>
+            </div>
+            <div class="textJudul" style="font-weight:bold">
+                Occupancy Counting System
+            </div>
+        </div>
+    </div>
+
+
+    <div id="page-wrapper" style="margin:0px">
+        @RenderBody()
+    </div>
+
+
+
+
+    @if (IsSectionDefined("BodyScript"))
+    {
+        @RenderSection("BodyScript")
+    }
+
+    @if (IsSectionDefined("Style"))
+    {
+        @RenderSection("Style")
+    }
+
+    <style>
+
+
+    </style>
+</body>
+</html>

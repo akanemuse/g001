@@ -1,0 +1,120 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.metro .page {
+    width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.description {
+    margin: 10px 0;
+}
+
+.show-grid .row [class*="span"] {
+    line-height: 40px;
+    background: rgba(193, 179, 123, 0.52);
+    text-align: center;
+    min-height: 10px !important;
+}
+
+.color-stack li,
+#icon-list li {
+    margin-bottom: 5px;
+}
+
+.example > img {
+    margin: 5px;
+    display: inline-block;
+}
+
+.example .image-container {
+    margin: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.layout {
+    min-height: 100%;
+    position: relative;
+}
+
+header {
+    height: 45px;
+    position: relative;
+}
+
+footer {
+    width: 100%;
+    height: 25px;
+}
+
+@media only screen and (max-width: 640px) {
+    .prettyprint,
+    .example {
+        display: none;
+    }
+}
+/******* nuryanto */
+.fullscreenHeader {
+    /*background-color: #eeeeee;*/
+    background: url("/Content/images/Company/Header-graphic01_1000_100.gif");
+    background-size: 100% auto;
+    color: #555555;
+    display: block;
+    width: 100%;
+    height: 100px;
+    font-size: 4.8rem;
+    padding: 1px;
+}
+
+.textHeader {
+    padding: 0 2px;
+    display: inline;
+    font-weight:bold;
+    color:red;
+}
+
+.textJudul {
+    padding: 8px;
+    display: inline;
+    font-weight:bold;
+    color: darkred;
+    float: right;
+}
+
+.leftPanel{
+    display: inline-block;
+    padding:2px;
+    width:20%;
+    position: absolute;
+    bottom:0;
+}
+
+.rightPanel{
+    display: inline-block;
+    padding:2px;
+    width:79%;
+    float: right;
+}
+
+.headerDetail{
+    height: 100px;
+    position: relative;
+    display: block;
+}
+
+.metro .fg-coldBlue{
+    color: #6283f9 !important;
+}
+
+.metro .bg-coldBlue {
+    background-color: #6283f9 !important;
+}
+
+.metro .bg-LightBg {
+    background-color:#eeeeee !important;
+}

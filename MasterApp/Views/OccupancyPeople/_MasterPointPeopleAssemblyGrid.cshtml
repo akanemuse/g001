@@ -1,0 +1,45 @@
+﻿@using MasterApp.Models;
+@{
+    MasterPointModel MasterModel = (MasterPointModel)ViewData["MasterPointAssembly"];
+}
+
+<div style="height: 665px; overflow: auto;">
+    <table class="table striped" style="margin-bottom: 0; width:1366px;">
+        <thead style="display:block; width:100%;">
+            <tr>
+                <th class="text-left" style="width:100px;"><h2>No</h2></th>
+                <th class="text-left" style="width:572px;"><h2>Name</h2></th>
+                <th class="text-left" style="width:694px;"><h2>Division</h2></th>
+            </tr>
+        </thead>
+
+        <tbody style="height:534px; display:block; overflow-y: scroll;">
+            @{int i = 0;}
+            @foreach (var item in @MasterModel.PeopleList.Where(a => a.isAtAssemblyPoint == false))
+            {
+                i++;
+                <tr>
+                    <td style="width:100px;"><h2>@i</h2></td>
+                    <td style="width:579px;"><h2>@item.Name.Trim()</h2></td>
+                    <td style="width:687px;"><h2>@item.Divisi.Trim()</h2></td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot style="display: block; width: 100%;">
+            <tr class="success">
+                <td class="text-left" style="width:100px;">
+                    <h2>
+                        <a href="javascript:window.history.back();"><i class="icon-arrow-left-3 fg-darker"></i></a>
+                    </h2>
+                </td>
+                <td class="text-center" colspan="3" style="width:1055px;">
+                    <h2>
+                        TOTAL
+                    </h2>
+                </td>
+                <td style="width:222px;"><h2>@MasterModel.PeopleList.Where(a => a.isAtAssemblyPoint == false).Count()</h2></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

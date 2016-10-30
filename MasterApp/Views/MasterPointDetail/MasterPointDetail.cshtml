@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "MasterPointDetail";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+@using MasterApp.Models;
+@{
+    MasterPointModel MasterModel = (MasterPointModel)ViewData["MasterPoint"];
+}
+
+@*<center>*@
+<div style="display:inline-block;">
+    <h1 style="font-weight: bold; display: inline-block; float:left; width: 1000px; text-align:center;">
+        @*<a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>*@
+        @MasterModel.LocationName
+    </h1>
+    <div class="times" data-role="times" data-style-background="bg-LightBg" data-style-divider="fg-coldBlue" data-style-foreground="fg-coldBlue"
+         style="font-size: 22px; display: inline-block; float: right; padding-top: 20px;"></div>
+    <div class="fg-coldBlue ntm" style="font-size: 22px; text-align: center; display: inline-block; float: right; padding-top:22px">
+        @*<strong>*@
+        @DateTime.Today.ToString("dd-MMM-yyyy")
+        @*</strong>*@
+        &nbsp;&nbsp;
+    </div>
+    @*</center>*@
+</div>
+
+<div id="partialLiveDetail">
+    @Html.Partial("_MasterPointDetailGrid")
+</div>
+
+@*<div class="leftPanel">
+    <a href="/MasterPoint/MasterPoint"><i class="icon-arrow-left-3 fg-darker smaller" style="font-size: 4.8rem; line-height: 4.8rem;"></i></a>
+    <div class="fg-coldBlue ntm" style="font-size: 80px; text-align: center">
+        <strong>@DateTime.Today.Day.ToString() @DateTime.Today.ToString("MMM")</strong> </div>
+    <div class="times" data-role="times" data-style-background="bg-coldBlue" data-style-divider="fg-coldBlue" 
+         style="font-size: 32px"></div>
+
+</div>*@
+
+@*<div class="rightPanel">
+    <div id="partialLiveDetail" style="float:right">
+        @Html.Partial("_MasterPointDetailLiveTile")
+    </div>
+</div>*@
+@section Style{
+    <style>
+        .metro h2 {
+            font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: #000000;
+            font-size: 3.5rem;
+            line-height: 3.5rem;
+            letter-spacing: 0.03em;
+        }
+    </style>
+}
+@section BodyScript{
+    <script type="text/javascript">
+        //$(function () {
+        //    setInterval(
+        //        function () { $('#partialLiveDetail').load('/MasterPointDetail/Refresh'); }
+
+        //        , 3000); // every 3 sec
+        //});
+
+        var ID = "@MasterModel.ID";
+        var AreaName = "@MasterModel.AreaName";
+        var LocationName = "@MasterModel.LocationName";
+        var InDeviceList = "@MasterModel.InDeviceList";
+        var OutDeviceList = "@MasterModel.OutDeviceList";
+        var Effect = "@MasterModel.Effect";
+        var GroupBy = "@MasterModel.GroupBy";
+
+        $(function () {
+            setInterval(
+                function Refresh() {
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/MasterPointDetail/Refresh",
+                            data: {
+                                ID: ID,
+                                AreaName: AreaName,
+                                LocationName: LocationName,
+                                InDeviceList: InDeviceList,
+                                OutDeviceList: OutDeviceList,
+                                Effect: Effect,
+                                GroupBy: GroupBy,
+                            },
+                            success: function (data) {
+                                $("#partialLiveDetail").html(data);
+                            }
+                        }
+                    );
+                }
+            , 3000);
+        });
+
+        function MasterPointPeopleByDiv(item, group) {
+            $.ajax({
+                type: "POST",
+                url: "/MasterPointDetail/MasterPointPeople",
+                data: {
+                    ID: item.ID,
+                    AreaName: item.AreaName,
+                    LocationName: item.LocationName,
+                    InDeviceList: item.InDeviceList,
+                    OutDeviceList: item.OutDeviceList,
+                    InsideCount: item.InsideCount,
+                    Effect: item.Effect,
+                    GroupBy: item.group,
+                    CurrentGroup: group,
+                },
+            });
+        }
+
+        function MasterPointPeople(item) {
+            $.ajax({
+                type: "POST",
+                url: "/MasterPointDetail/MasterPointPeople",
+                data: {
+                    ID: item.ID,
+                    AreaName: item.AreaName,
+                    LocationName: item.LocationName,
+                    InDeviceList: item.InDeviceList,
+                    OutDeviceList: item.OutDeviceList,
+                    InsideCount: item.InsideCount,
+                    Effect: item.Effect,
+                    GroupBy: item.group,
+                },
+            });
+        }
+
+        function GetPeopleHistory(item) {
+            $.ajax({
+                type: "POST",
+                url: "/MasterPointDetail/PeopleHistory",
+                data: {
+                    ID: item.ID,
+                    AreaName: item.AreaName,
+                    LocationName: item.LocationName,
+                    InDeviceList: item.InDeviceList,
+                    OutDeviceList: item.OutDeviceList,
+                    InsideCount: item.InsideCount,
+                    Effect: item.Effect,
+                    GroupBy: item.group,
+                },
+            });
+        }
+
+
+        $(document).ready(function () {
+
+            
+        });
+    </script>
+}

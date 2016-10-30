@@ -1,0 +1,32 @@
+﻿<Configuration>
+  <ListModels>
+    <ID>1</ID>
+    <AreaName>A</AreaName>
+    <LocationName>OFFICE</LocationName>
+    <InDeviceList>000101,</InDeviceList>
+    <OutDeviceList>000101,</OutDeviceList>
+    <AssemblyDevice>000107,000108,000109,</AssemblyDevice>
+    <InsideCount>0</InsideCount>
+    <Effect>slideLeftRight</Effect>
+  </ListModels>
+  <ListModels>
+    <ID>2</ID>
+    <AreaName>B</AreaName>
+    <LocationName>LOCKER AND SHOWER</LocationName>
+    <InDeviceList>000102,</InDeviceList>
+    <OutDeviceList>000102,</OutDeviceList>
+    <AssemblyDevice>000107,000108,000109,</AssemblyDevice>
+    <InsideCount>0</InsideCount>
+    <Effect>slideLeftRight</Effect>
+  </ListModels>
+  <ListModels>
+    <ID>3</ID>
+    <AreaName>C</AreaName>
+    <LocationName>PLANT AND YARD</LocationName>
+    <InDeviceList>000101,</InDeviceList>
+    <OutDeviceList>000101,</OutDeviceList>
+    <AssemblyDevice>000107,000108,000109,</AssemblyDevice>
+    <InsideCount>0</InsideCount>
+    <Effect>slideLeftRight</Effect>
+  </ListModels>
+</Configuration>

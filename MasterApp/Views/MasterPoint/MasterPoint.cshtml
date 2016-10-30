@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "MasterPoint";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using MasterApp.Models;
+@*@{
+    IEnumerable<MasterPointModel> model = (IEnumerable<MasterPointModel>)ViewData["listMasterPoint"];
+}*@
+@model IEnumerable<MasterPointModel>
+
+<div class="container">
+    <h1>
+        <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+        Real Time People Count
+    </h1>
+    <h2>General Info</h2>
+    <p class="description">
+        Real Time People Count is an application to monitor people counted inside area that has been registered.
+        All area that have been registered is shown here, click one to see the detail.
+    </p>
+
+    <div id="partialLive">
+        @Html.Partial("_MasterPointLiveTile", Model)
+    </div>
+
+</div>
+@section BodyScript{
+    <script type="text/javascript">
+
+        var globalItem;
+
+        $(function () {
+            setInterval(
+                function () { $('#partialLive').load('/MasterPoint/Refresh'); }
+
+                , 5000); // every 3 sec
+        });
+
+        function DetailMasterPoint(group)
+        {
+            $.ajax({
+                type: "POST",
+                url: "/MasterPoint/MasterPointDetail",
+                data: {
+                    ID: globalItem.ID,
+                    AreaName: globalItem.AreaName,
+                    LocationName: globalItem.LocationName,
+                    InDeviceList: globalItem.InDeviceList,
+                    OutDeviceList: globalItem.OutDeviceList,
+                    InsideCount: globalItem.InsideCount,
+                    Effect: globalItem.Effect,
+                    GroupBy: group,
+                },
+            });
+        }
+
+        function DetailMasterPointPopup(item)
+        {
+            globalItem = item;
+            $.Dialog({
+                overlay: true,
+                shadow: true,
+                padding: 10,
+                width:400,
+                icon: '<img src="/Content/images/windows_modern_logo.png">',
+                title: 'Choose User Group by',
+                content: '',
+                onShow: function (_dialog) {
+                    var item = item;
+                    var content = 
+                            '<fieldset "style=padding:2px;"> '+
+                                '<a href="javascript:DetailMasterPoint(\'Division\')">Group by Division</i></a>' +
+                                '<br>'+
+                                '<a href="javascript:DetailMasterPoint(\'Position\')">Group by Position</i></a>'+
+                                
+                            '</fieldset>'
+                            ;
+                    $.Dialog.content(content);
+                }
+            });
+        }
+
+        function GoToDetailMasterPoint(item) {
+            $.ajax({
+                type: "POST",
+                url: "/MasterPoint/MasterPointDetail",
+                data: {
+                    ID: item.ID,
+                    AreaName: item.AreaName,
+                    LocationName: item.LocationName,
+                    InDeviceList: item.InDeviceList,
+                    OutDeviceList: item.OutDeviceList,
+                    InsideCount: item.InsideCount,
+                    Effect: item.Effect,
+                    //GroupBy: group,
+                },
+            });
+        }
+
+
+        $(document).ready(function () {
+
+        });
+    </script>
+}

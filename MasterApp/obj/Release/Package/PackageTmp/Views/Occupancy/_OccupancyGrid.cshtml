@@ -1,0 +1,52 @@
+﻿@using MasterApp.Models;
+@model IEnumerable<MasterPointModel>
+
+<div style="height: 590px; overflow: auto;">
+    <table class="table striped" style="margin-bottom: 0; width: 1366px;">
+        <thead style="display:block; width:100%;">
+            <tr class="success">
+                <th class="text-left" style="width:100px;"><h2>No</h2></th>
+                <th class="text-left" style="width:450px;"><h2>Location</h2></th>
+                <th class="text-left" style="width:280px;"><h2>Real Access</h2></th>
+                <th class="text-left" style="width:300px;"><h2>Assembly Point</h2></th>
+                <th class="text-left" style="width:236px;"><h2>Difference</h2></th>
+            </tr>
+        </thead>
+
+        <tbody style="height: 435px; display: block; overflow: auto;">
+            @if (@Model.Count() < 1)
+            {
+                <tr>
+                    <td colspan="3">
+                        <div style="height: 411px; width: 1350px; overflow: hidden;">
+                            <h2>No data found</h2>
+                        </div>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in @Model)
+                {
+                    <tr onclick="javascript:MasterPointAssemblyPeople(@Html.Raw(Json.Encode(item)))">
+                        <td style="width:100px;"><h2>@item.AreaName</h2></td>
+                        <td style="width:450px;"><h2>@item.LocationName</h2></td>
+                        <td style="width:280px;"><h2>@item.InsideCount</h2></td>
+                        <td style="width:300px;"><h2>@item.PeopleInAssemblyPoint</h2></td>
+                        <td style="width:236px;"><h2>@item.PeopleStillInside</h2></td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+        <tfoot style="display:block;">
+            <tr class="success">
+                <td class="text-left" style="width:100px;"><h2></h2></td>
+                <td class="text-left" style="width:450px;"><h2>TOTAL</h2></td>
+                <td class="text-left" style="width:280px;"><h2>@Model.Sum(m => m.InsideCount)</h2></td>
+                <td class="text-left" style="width:300px;"><h2>@Model.Sum(m => m.PeopleInAssemblyPoint)</h2></td>
+                <td class="text-left" style="width:236px;"><h2>@Model.Sum(m => m.PeopleStillInside)</h2></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

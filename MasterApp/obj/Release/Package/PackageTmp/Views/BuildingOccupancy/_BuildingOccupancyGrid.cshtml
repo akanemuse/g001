@@ -1,0 +1,44 @@
+﻿@using MasterApp.Models;
+@{ 
+    IEnumerable<BuildingOccupancyModel> MasterModelList = (IEnumerable<BuildingOccupancyModel>)ViewData["ListMasterPoint"]; 
+    
+}
+
+<div style="height: 665px; overflow: auto;">
+    <table class="table striped" style="margin-bottom: 0; width:1366px;">
+        <thead style="display:block; width:100%;">
+            <tr class="success">
+                <th class="text-left" style="width:100px;"><h2>NO</h2></th>
+                <th class="text-left" style="width:622px;"><h2>FLOOR</h2></th>
+                <th class="text-left" style="width:208px;"><h2>EMPLOYEE</h2></th>
+                <th class="text-left" style="width:210px;"><h2>GUEST</h2></th>
+                <th class="text-left" style="width:226px;"><h2>TOTAL</h2></th>
+            </tr>
+        </thead>
+
+        @*<tbody style="height:435px; display:block; overflow:auto;">*@
+        <tbody style="height:534px; display:block; overflow-y:scroll;">
+            @{int i = 0;}
+                        @foreach (var item in @MasterModelList)
+            {
+                i++;
+                @*<tr onclick="javascript:MasterPointPeopleByDiv(@Html.Raw(Json.Encode(@MasterModel)), '@item.Group')">*@
+                @*<tr>*@
+                <tr onclick="javascript: GetPeopleHistory(@Html.Raw(Json.Encode(@item)))">
+                    <td style="width:100px;"><h2>@i</h2></td>
+                    <td style="width:633px;"><h2>@item.LocationName</h2></td>
+                    <td style="width:211px;"><h2>@item.EmployeeCount</h2></td>
+                    <td style="width:211px;"><h2>@item.GuestCount</h2></td>
+                    <td style="width:211px;"><h2>@item.InsideCount</h2></td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot style="display: block; width: 100%;">
+            <tr class="success">
+                <td class="text-center" colspan="4" style="width:1155px;"><h2>TOTAL</h2></td>
+                <td style="width:211px;"><h2>@MasterModelList.Sum(m => m.InsideCount)</h2></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

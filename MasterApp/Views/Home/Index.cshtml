@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@section Style{
+    <style type="text/css">
+        .login-panel
+        {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            /* bring your own prefixes */
+            transform: translate(-50%, -50%);
+        }
+    </style>
+}
+
+
+    <div class="login-panel">
+        <div class="panel-header text-center"><h1><strong>Monitoring Application</strong></h1></div>
+        <div class="panel-content">
+            <div class="grid">
+                <div class="row">
+                    <div class="span3">
+                        <h2 class="text-center">&nbsp;</h2>
+                        <h2 class="text-center">Welcome</h2>
+                        <h2 class="text-center">to</h2>
+                        <h2 class="text-center">Monitoring</h2>
+                        <h2 class="text-center">Application</h2>
+                    </div>
+                    <div class="span5">
+                        <div class="carousel" id="carousel1">
+                            <div class="slide">
+                                <img src="@Url.Content("~/Content/images/login/etios.jpg")" class="cover1" />
+                            </div>
+
+                            <div class="slide">
+                                <img src="@Url.Content("~/Content/images/login/vios.jpg")" class="cover1" />
+                            </div>
+
+                            <div class="slide">
+                                <img src="@Url.Content("~/Content/images/login/yaris.jpg")" class="cover1" />
+                            </div>
+
+                            <a class="controls left"><i class="icon-arrow-left-3"></i></a>
+                            <a class="controls right"><i class="icon-arrow-right-3"></i></a>
+                        </div>
+                    </div>
+                    @section BodyScript{
+                        <script type="text/javascript">
+
+                        $(document).ready(function () {
+                            $(function () {
+                                $("#carousel1").carousel({
+                                    height: 300,
+                                    effect: 'fade',
+                                    markers: {
+                                        show: true,
+                                        type: 'square',
+                                        position: 'bottom-right'
+                                    }
+                                });
+                            })
+                        });
+                        </script>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <span class="text-center">v.1.00 &copy; Copyright 2015 - PT Toyota Motor Manufacturing Indonesia. All rights reserved. </span>
+        </div>
+    </div>

@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutOccupancy.cshtml";
+}
+@using MasterApp.Models;
+@model IEnumerable<MasterPointModel>
+@*<center>
+    <h1 style="font-weight:bold">
+        <a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+        TOYOTA MOTOR MFG INDONESIA PLANT 3
+    </h1>
+</center>*@
+
+<div style="display:inline-block;">
+    <h1 style="font-weight: bold; display: inline-block; float:left; width: 1000px; text-align:center;">
+        @*<a href="/"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>*@
+        Toyota Motor Mfg Indonesia Plant 3
+    </h1>
+    <div class="times" data-role="times" data-style-background="bg-LightBg" data-style-divider="fg-coldBlue" data-style-foreground="fg-coldBlue"
+         style="font-size: 22px; display: inline-block; float: right; padding-top: 20px;"></div>
+    <div class="fg-coldBlue ntm" style="font-size: 22px; text-align: center; display: inline-block; float: right; padding-top:22px">
+        @DateTime.Today.ToString("dd-MMM-yyyy")&nbsp;&nbsp;
+    </div>
+</div>
+
+<div id="partialLive">
+    @Html.Partial("_OccupancyGrid", Model)
+</div>
+
+@section Style{
+    <style>
+        .metro h2 {
+          font-family: 'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+          font-weight: 700;
+          color: #000000;
+          font-size: 3.5rem;
+          line-height: 3.5rem;
+          letter-spacing: 0.03em;
+        }
+    </style >
+}
+
+@section BodyScript{
+    <script type="text/javascript">
+
+        //var globalItem;
+
+        $(function () {
+            setInterval(
+                function () { $('#partialLive').load('/Occupancy/Refresh'); }
+                , 3000); // every 3 sec
+        });
+
+        function MasterPointAssemblyPeople(item) {
+            $.ajax({
+                type: "POST",
+                url: "/Occupancy/MasterPointAssemblyPeople",
+                data: {
+                    ID: item.ID,
+                    AreaName: item.AreaName,
+                    LocationName: item.LocationName,
+                    InDeviceList: item.InDeviceList,
+                    OutDeviceList: item.OutDeviceList,
+                    AssemblyDevice: item.AssemblyDevice,
+                    InsideCount: item.InsideCount,
+                    Effect: item.Effect,
+                    GroupBy: item.group,
+                },
+            });
+        }
+
+        //function DetailMasterPoint(group) {
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/MasterPoint/MasterPointDetail",
+        //        data: {
+        //            ID: globalItem.ID,
+        //            AreaName: globalItem.AreaName,
+        //            LocationName: globalItem.LocationName,
+        //            InDeviceList: globalItem.InDeviceList,
+        //            OutDeviceList: globalItem.OutDeviceList,
+        //            InsideCount: globalItem.InsideCount,
+        //            Effect: globalItem.Effect,
+        //            GroupBy: group,
+        //        },
+        //    });
+        //}
+
+        //function DetailMasterPointPopup(item) {
+        //    globalItem = item;
+        //    $.Dialog({
+        //        overlay: true,
+        //        shadow: true,
+        //        padding: 10,
+        //        width: 400,
+        //        icon: '<img src="/Content/images/windows_modern_logo.png">',
+        //        title: 'Choose User Group by',
+        //        content: '',
+        //        onShow: function (_dialog) {
+        //            var item = item;
+        //            var content =
+        //                    '<fieldset "style=padding:2px;"> ' +
+        //                        '<a href="javascript:DetailMasterPoint(\'Division\')">Group by Division</i></a>' +
+        //                        '<br>' +
+        //                        '<a href="javascript:DetailMasterPoint(\'Position\')">Group by Position</i></a>' +
+
+        //                    '</fieldset>'
+        //            ;
+        //            $.Dialog.content(content);
+        //        }
+        //    });
+        //}
+
+
+
+
+        //$(document).ready(function () {
+
+        //});
+    </script>
+}

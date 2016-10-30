@@ -1,0 +1,65 @@
+﻿@using MasterApp.Models;
+@{
+    MasterPointModel MasterModel = (MasterPointModel)ViewData["MasterPoint"];
+}
+
+<div class="tile quadro quadro-vertical bg-coldBlue" style="width:1080px; height:650px" data-click="transform" onclick="javascript:MasterPointPeople(@Html.Raw(Json.Encode(MasterModel)))">
+    <div class="tile-content">
+        <div class="padding10">
+
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
+            <h1 class="fg-white ntm" style="font-size: 220px; text-align:center">@MasterModel.InsideCount</h1>
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
+            <h2 class="fg-white no-margin" style="font-size: 80px; text-align:center; padding:6px;">@MasterModel.LocationName</h2>
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
+
+            <div class="example" style="height:360px; overflow:auto;">
+                <table class="table striped">
+                    <thead>
+                        <tr>
+                            <th class="text-left"><h2>Division</h2></th>
+                            <th class="text-left"><h2>Count</h2></th>
+                        </tr>
+                    </thead>
+                    @if (@MasterModel.GroupBy.Equals("Division"))
+                    {
+                        <tbody>
+                            @foreach (var item in @MasterModel.GroupModelListByDiv)
+                            {
+                                <tr>
+                                    <td><h2>@item.Group</h2></td>
+                                    <td><h2>@item.GroupCount</h2></td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                    else
+                    {
+                        <tbody>
+                            @foreach (var item in @MasterModel.GroupModelListByJab)
+                            {
+                                <tr>
+                                    <td><h2>@item.Group</h2></td>
+                                    <td><h2>@item.GroupCount</h2></td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                    <tfoot></tfoot>
+                </table>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <div class="tile-status" style="padding:4px">
+        @*<h1 class="fg-white ntm" style="font-size: 80px;">@MasterModel.AreaName</h1>*@
+    </div>
+</div>

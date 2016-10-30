@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutOccupancy.cshtml";
+}
+@using MasterApp.Models;
+@{
+    MasterPointModel MasterModel = (MasterPointModel)ViewData["MasterPointAssembly"];
+}
+<div id="peopleGrid">
+    @Html.Partial("_MasterPointPeopleAssemblyGrid")
+</div>
+
+@section BodyScript{
+    <script type="text/javascript">
+
+        var ID = "@MasterModel.ID";
+        var AreaName = "@MasterModel.AreaName";
+        var LocationName = "@MasterModel.LocationName";
+        var InDeviceList = "@MasterModel.InDeviceList";
+        var OutDeviceList = "@MasterModel.OutDeviceList";
+        var AssemblyDevice = "@MasterModel.AssemblyDevice";
+
+        $(function () {
+            setInterval(
+                function Refresh() {
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/OccupancyPeople/Refresh",
+                            data: {
+                                ID: ID,
+                                AreaName: AreaName,
+                                LocationName: LocationName,
+                                InDeviceList: InDeviceList,
+                                OutDeviceList: OutDeviceList,
+                                AssemblyDevice: AssemblyDevice,
+                            },
+                            success: function (data) {
+                                $("#peopleGrid").html(data);
+                            }
+                        }
+                    );
+                }
+            , 3000);
+        });
+
+        $(document).ready(function () {
+
+        });
+    </script>
+}
